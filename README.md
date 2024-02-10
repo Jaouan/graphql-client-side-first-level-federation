@@ -3,7 +3,8 @@
 > [!WARNING]
 > This project is a Proof-Of-Concept. It is intended only for evaluation purposes.
 
-A single hook with a unique GraphQL query fetches from multiple GraphQL APIs. Each first-level field has its own source.
+A single hook with a unique GraphQL query that fetch data from multiple GraphQL APIs.  
+Each first-level field has its own source.  
 
 [**✨ Live demo**](https://jaouan.github.io/graphql-client-side-first-level-federation/)
 
