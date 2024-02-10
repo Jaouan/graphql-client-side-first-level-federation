@@ -18,7 +18,7 @@ type DomainQuery = {
  * @param queryAst The operation definition node to extract from.
  * @returns An array of domain queries.
  */
-const extractDomainQueries = (
+export const extractDomainQueries = (
   queryAst: OperationDefinitionNode
 ): DomainQuery[] =>
   queryAst.selectionSet.selections
