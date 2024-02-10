@@ -14,7 +14,7 @@ pre {
   background-color: #353535;
   padding: 1rem;
   border-radius: 0.5rem;
-  overflow-x: auto;
+  text-align: left;
 }
 .lists {
   font-size: 0.8em;
