@@ -6,7 +6,7 @@ import {
   useSuspenseQuery,
   UseSuspenseQueryResult,
 } from "@apollo/client";
-import { extractQueries } from "./domain-parser";
+import { extractQueries } from "./first-level-field-parser";
 import { useContext, useMemo } from "react";
 import { DataContext } from ".";
 import deepmerge from "deepmerge";
@@ -39,8 +39,8 @@ function useGenericQuery<
   variables: TVariables,
   queryHook: UseQueryHook
 ): GenericQueryResult<TData, TVariables> {
-  const { clientByDomains } = useContext(DataContext);
-  const domainQueries = useMemo(() => {
+  const { clientByFirstLevelFields } = useContext(DataContext);
+  const firstLevelFieldQueries = useMemo(() => {
     const queries = extractQueries(graphQlQuery);
     console.debug("🌐 Queries:", queries);
     return queries;
@@ -51,9 +51,9 @@ function useGenericQuery<
     opts: Record<string, unknown>
   ) => TData;
 
-  const results = domainQueries.map(({ domain, query }) =>
+  const results = firstLevelFieldQueries.map(({ firstLevelField, query }) =>
     callableQueryHook(query as DocumentNode, {
-      client: clientByDomains[domain as string],
+      client: clientByFirstLevelFields[firstLevelField as string],
       variables,
     })
   ) as GenericQueryResult<TData, TVariables>[];

@@ -10,15 +10,15 @@ import { print } from "@apollo/client/utilities";
 
 export const DataContext = createContext(
   {} as {
-    clientByDomains: Record<string, ApolloClient<unknown>>;
+    clientByFirstLevelFields: Record<string, ApolloClient<unknown>>;
   }
 );
 
 export const DataProvider = ({
-  uriByDomains,
+  uriByFirstLevelFields,
   children,
 }: {
-  uriByDomains: Record<string, string>;
+  uriByFirstLevelFields: Record<string, string>;
   children: ReactNode;
 }) => {
   const authMiddleware = new ApolloLink((operation, forward) => {
@@ -26,9 +26,9 @@ export const DataProvider = ({
     return forward(operation);
   });
 
-  const clientByDomains = Object.fromEntries(
-    Object.entries(uriByDomains).map(([domain, uri]) => [
-      domain,
+  const clientByFirstLevelFields = Object.fromEntries(
+    Object.entries(uriByFirstLevelFields).map(([firstLevelField, uri]) => [
+      firstLevelField,
       new ApolloClient({
         cache: new InMemoryCache(),
         link: concat(authMiddleware, new HttpLink({ uri })),
@@ -37,7 +37,7 @@ export const DataProvider = ({
   );
 
   return (
-    <DataContext.Provider value={{ clientByDomains }}>
+    <DataContext.Provider value={{ clientByFirstLevelFields }}>
       {children}
     </DataContext.Provider>
   );

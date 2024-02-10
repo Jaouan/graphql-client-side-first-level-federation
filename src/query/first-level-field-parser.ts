@@ -8,26 +8,26 @@ import {
 import { gql } from "@apollo/client";
 import { print } from "@apollo/client/utilities";
 
-type DomainQuery = {
-  domain: string;
+type FirstLevelFieldQuery = {
+  firstLevelField: string;
   query: DocumentNode;
 };
 
 /**
- * Extracts domain-specific queries from an operation definition node.
+ * Extracts firstLevelField-specific queries from an operation definition node.
  * @param queryAst The operation definition node to extract from.
- * @returns An array of domain queries.
+ * @returns An array of firstLevelField queries.
  */
-export const extractDomainQueries = (
+export const extractFirstLevelFieldQueries = (
   queryAst: OperationDefinitionNode
-): DomainQuery[] =>
+): FirstLevelFieldQuery[] =>
   queryAst.selectionSet.selections
     .filter(
       (selectionAst): selectionAst is FieldNode =>
         selectionAst.kind === Kind.FIELD
     )
     .map((fieldAst) => ({
-      domain: fieldAst.name.value,
+      firstLevelField: fieldAst.name.value,
       // Reparse the query to avoid a bug in Apollo Client.
       query: gql(
         print({
@@ -46,15 +46,17 @@ export const extractDomainQueries = (
     }));
 
 /**
- * Extracts queries for different domains from a unified GraphQL query.
+ * Extracts queries for different firstLevelFields from a unified GraphQL query.
  * @param unifiedQuery The unified query document node or query string.
- * @returns A record of domain queries.
+ * @returns A record of firstLevelField queries.
  */
-export const extractQueries = (unifiedQuery: DocumentNode): DomainQuery[] =>
+export const extractQueries = (
+  unifiedQuery: DocumentNode
+): FirstLevelFieldQuery[] =>
   unifiedQuery.definitions
     .filter(
       (definition): definition is OperationDefinitionNode =>
         definition.kind === Kind.OPERATION_DEFINITION &&
         definition.operation === OperationTypeNode.QUERY
     )
-    .flatMap(extractDomainQueries);
+    .flatMap(extractFirstLevelFieldQueries);

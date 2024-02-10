@@ -2,10 +2,10 @@ import { DataProvider } from "./query";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { SuspenseComponent } from "./components/SuspenseComponent";
-import { MERGED_QUERY_STRING, URI_BY_DOMAINS } from "./config";
+import { MERGED_QUERY_STRING, URI_BY_FIELDS } from "./config";
 
 const App = () => (
-  <DataProvider uriByDomains={URI_BY_DOMAINS}>
+  <DataProvider uriByFirstLevelFields={URI_BY_FIELDS}>
     <main>
       <section>
         <h2>Demo</h2>
@@ -24,8 +24,8 @@ const App = () => (
         <h2>Usage</h2>
         <h3>Provider</h3>
         <pre>
-          {`<DataProvider uriByDomains={${JSON.stringify(
-            URI_BY_DOMAINS,
+          {`<DataProvider uriByFirstLevelFields={${JSON.stringify(
+            URI_BY_FIELDS,
             null,
             2
           )}}>

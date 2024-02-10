@@ -10,7 +10,7 @@ A single hook with a unique GraphQL query fetches from multiple GraphQL APIs. Ea
 ## Usage
 ### Provider
 ```ts
-<DataProvider uriByDomains={{
+<DataProvider uriByFirstLevelFields={{
   "characters": "https://rickandmortyapi.com/graphql",
   "pokemons": "https://graphql-pokeapi.graphcdn.app",
   "allPlanets": "https://swapi-graphql.netlify.app/.netlify/functions/index"

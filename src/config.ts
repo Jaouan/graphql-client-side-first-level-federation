@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const URI_BY_DOMAINS = {
+export const URI_BY_FIELDS = {
   characters: "https://rickandmortyapi.com/graphql",
   pokemons: "https://graphql-pokeapi.graphcdn.app",
   allPlanets: "https://swapi-graphql.netlify.app/.netlify/functions/index",

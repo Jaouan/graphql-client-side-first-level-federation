@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "test/domain-parser.test.ts"],
+  "include": ["src", "test/firstLevelField-parser.test.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
