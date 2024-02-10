@@ -1,53 +1,45 @@
 # 🧪 POC - Client-side GraphQL "First-Level Federation"
 
-This project is a Proof-Of-Concept of Client-side GraphQL "First-Level Federation" using :
-- Apollo Client
-- React
+> [!WARNING]
+> This project is a Proof-Of-Concept. It is intended only for evaluation purposes.
+
+A single hook with a unique GraphQL query fetches from multiple GraphQL APIs. Each first-level field has its own source.
 
 [**✨ Live demo**](https://jaouan.github.io/graphql-client-side-first-level-federation/)
 
-## Configuration
-Every first-level field have a specific source.
-```javascript
-{
-  characters: "https://rickandmortyapi.com/graphql",
-  pokemons: "https://graphql-pokeapi.graphcdn.app",
-  allPlanets: "https://swapi-graphql.netlify.app/.netlify/functions/index",
-}
-```
-So this request works.
-```gql
-query NameQuery {
-  characters {
-    results {
-      id
-      name
-    }
-  }
-  pokemons {
-    results {
-      id
-      name
-    }
-  }
-}
-query PlanetQuery {
-  allPlanets {
-    planets {
-      id
-      name
-    }
-  }
-}
+## Usage
+### Provider
+```ts
+<DataProvider uriByDomains={{
+  "characters": "https://rickandmortyapi.com/graphql",
+  "pokemons": "https://graphql-pokeapi.graphcdn.app",
+  "allPlanets": "https://swapi-graphql.netlify.app/.netlify/functions/index"
+}}>
+    ...
+</DataProvider>
 ```
 
-## Usage
-Using Suspense :
+### Hooks
+With Suspense:
 ```ts
-const { data } = useSuspenseDataQuery<MergedResult>(gql`query { ... }`);
+const { data } = useSuspenseDataQuery(gql`
+   query NameQuery {
+     characters {
+       results { id name }
+     }
+     pokemons {
+       results { id name }
+     }
+   }
+   query PlanetQuery {
+     allPlanets {
+       planets { id name }
+     }
+   }
+`);
 ```
   
-Using basic hook :
+With basic hook:
 ```ts
-const { loading, data, error } = useDataQuery<MergedResult>(gql`query { ... }`);
+const { loading, data, error } = useDataQuery(gql`query { ... }`);
 ```
