@@ -9,7 +9,7 @@ A single hook with a unique GraphQL query fetches from multiple GraphQL APIs. Ea
 
 ## Usage
 ### Provider
-```ts
+```tsx
 <DataProvider uriByFirstLevelFields={{
   "characters": "https://rickandmortyapi.com/graphql",
   "pokemons": "https://graphql-pokeapi.graphcdn.app",
