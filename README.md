@@ -4,7 +4,7 @@ This project is a Proof-Of-Concept of Client-side GraphQL "First-Level Federatio
 - Apollo Client
 - React
 
-[✨ Live demo](TODO)
+[**✨ Live demo**](https://jaouan.github.io/graphql-client-side-first-level-federation/)
 
 ### Configuration
 Every first-level field have a specific source.
