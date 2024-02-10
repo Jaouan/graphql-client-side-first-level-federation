@@ -9,24 +9,15 @@ export const URI_BY_FIELDS = {
 // Used to display the query in the UI.
 export const MERGED_QUERY_STRING = `query NameQuery {
   characters {
-    results {
-      id
-      name
-    }
+    results { id name }
   }
   pokemons {
-    results {
-      id
-      name
-    }
+    results { id name }
   }
 }
 query PlanetQuery {
   allPlanets {
-    planets {
-      id
-      name
-    }
+    planets { id name }
   }
 }`;
 
