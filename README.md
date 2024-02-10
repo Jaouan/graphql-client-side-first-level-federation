@@ -6,7 +6,7 @@ This project is a Proof-Of-Concept of Client-side GraphQL "First-Level Federatio
 
 [**✨ Live demo**](https://jaouan.github.io/graphql-client-side-first-level-federation/)
 
-### Configuration
+## Configuration
 Every first-level field have a specific source.
 ```javascript
 {
@@ -39,4 +39,15 @@ query PlanetQuery {
     }
   }
 }
+```
+
+## Usage
+Using Suspense :
+```ts
+const { data } = useSuspenseDataQuery<MergedResult>(gql`query { ... }`);
+```
+  
+Using basic hook :
+```ts
+const { loading, data, error } = useDataQuery<MergedResult>(gql`query { ... }`);
 ```

@@ -21,7 +21,11 @@ const App = () => (
       <h1>Config</h1>
       <div>
         <pre>{JSON.stringify(URI_BY_DOMAINS, null, 2)}</pre>
-        <pre>{MERGED_QUERY_STRING}</pre>
+        <pre>{`const { data } = useSuspenseDataQuery(gql\`\n${MERGED_QUERY_STRING.split(
+          "\n"
+        )
+          .map((line) => `   ${line}`)
+          .join("\n")}\n\`);`}</pre>
       </div>
     </main>
   </DataProvider>
