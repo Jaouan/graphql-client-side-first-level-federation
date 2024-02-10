@@ -28,7 +28,7 @@ export const SuspenseComponent = () => {
       <div>
         <h3>Planets</h3>
         <ul>
-          {allPlanets.planets.slice(0, 20).map(({ name }: Planet) => (
+          {allPlanets.planets.map(({ name }: Planet) => (
             <li key={name}>{name}</li>
           ))}
         </ul>
