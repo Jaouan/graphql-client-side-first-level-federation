@@ -1,7 +1,7 @@
 # 🧪 POC - Client-side GraphQL "First-Level Federation"
 
 > [!WARNING]
-> This project is a Proof-Of-Concept. It is intended only for evaluation purposes.
+> This project is a Proof-Of-Concept. It is intended only for evaluation purposes. Definitly do not try this at home.
 
 A single hook with a unique GraphQL query that fetch data from multiple GraphQL APIs.  
 Each first-level field has its own source.  
